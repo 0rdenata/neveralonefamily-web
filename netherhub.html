@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Gestión de túneles del Netherhub</title>
+	<!-- Add the Bootstrap stylesheet -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script>
+		function getInstructions() {
+			// Get the values of the x, y and z inputs
+			let x = Number(document.getElementById("x").value);
+			let y = Number(document.getElementById("y").value);
+			let z = Number(document.getElementById("z").value);
+
+			// Calculate the instructions
+			let goUp = Boolean(y != 110)
+
+			let x1 = x
+			let z1 = z
+			if (x <= z) x1 = 0; else z1 = 0;
+
+			// Display the instructions in the paragraph with id "result"
+			let instructions = "<ol>"
+			if (goUp) instructions += "<li>Rompe tu portal en el nether (¡OJO! Asegurate de tener un mechero en el inventario)</li>\
+			<li>Sube hasta la altura <bold>y = 111</bold>.</li>\
+			<li>Construye tu nuevo portal asegurandote de mantener las coordenadas <bold>x = "+ x + "</bold> y <bold>z = " + z + "</bold> y de que la base de tu portal quede en <bold>y = 110</bold>.";
+			instructions += "<li>Haz un tunel hasta <bold>x = " + x1 + "</bold> y <bold>z = " + z1 + "</bold></li>\
+			<li>Haz un tunel en dirección <bold>x = 0</bold> y <bold>z = 0</bold> hasta encontrarte el tunel principal del netherhub.</li>";
+			document.getElementById("result").innerHTML = instructions;
+			document.getElementById("result-row").style.display = "";
+		}
+	</script>
+</head>
+
+<body>
+	<div class="container mt-5">
+		<h1 class="mb-4">Gestión de túneles del Netherhub</h1>
+		<div class="form-group row">
+			<label for="x" class="col-sm-2 col-form-label">Coordenada x de la base de tu portal en el nether:</label>
+			<div class="col-sm-10">
+				<input type="number" class="form-control" id="x" name="x">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="y" class="col-sm-2 col-form-label">Coordenada y de la base de de tu portal en el nether:</label>
+			<div class="col-sm-10">
+				<input type="number" class="form-control" id="y" name="y">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="z" class="col-sm-2 col-form-label">Coordenada z de la base de de tu portal en el nether:</label>
+			<div class="col-sm-10">
+				<input type="number" class="form-control" id="z" name="z">
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="offset-sm-2 col-sm-10">
+				<button class="btn btn-primary" onclick="getInstructions()">Dame instrucciones</button>
+			</div>
+		</div>
+		<div class="form-group row" id="result-row" style="display: none;">
+			<label for="result" class="col-sm-2 col-form-label">Instrucciones:</label>
+			<div class="col-sm-10">
+				<p class="form-control-plaintext font-weight-bold" id="result"></p>
+			</div>
+		</div>
+	</div>
+	<!-- Add the Bootstrap JavaScript library -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
